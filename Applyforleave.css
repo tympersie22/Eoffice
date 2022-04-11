@@ -1,0 +1,13 @@
+.ng-invalid-date {
+    border: 1px solid red !important;
+}
+
+.table-responsive{
+  padding: 8px;
+}
+    td{
+    width: 20%;
+  }
+  
+
+

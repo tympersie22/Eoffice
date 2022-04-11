@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Bebas Neue;
+    box-sizing: border-box;
+    color: white;
+  }
+  body {
+    background: linear-gradient(#dfe2df,rgb(13, 20, 16));
+  }
+  form {
+    border: 1px solid transparent;
+    margin: 50px 250px;
+    background: rgb(0, 0, 0, 0.5);
+    border-radius: 6px;
+  }
+  @media only screen and (max-width: 600px) {
+    form {
+      margin: 40px 40px !important;
+    }
+  }
+  @media only screen and (max-width: 950px) {
+    form {
+      margin: 50px 100px;
+    }
+  }
+  .p1 {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 15px;
+  }
+  hr {
+    margin: 13px;
+  }
+  .try {
+    margin: 15px;
+  }
+  .ud {
+    font-size: 20px;
+    padding: 10px 0 22px;
+  }
+  .pd {
+    margin: 35px 0 30px 0;
+    font-size: 20px;
+  }
+  .udf1 input,
+  textarea,
+  .udf4 input {
+    width: 95%;
+    padding: 4px;
+  }
+  .udf2,
+  .udf3,
+  .udf4,
+  .udf5 {
+    padding: 25px 0 0 0;
+  }
+  .udf2 input {
+    margin-left: 10px;
+  }
+  .udf5 input {
+    padding: 8px;
+    background-color: rgb(20, 20, 20);
+    width: 95%;
+    border-radius: 8px;
+    border: transparent;
+    cursor:pointer;
+  }
+  .udf5 input:hover {
+    background: rgb(0, 0, 0, 0.5);
+    color: green;
+    box-shadow: 0 0 5px #d5d8d6;
+  }
+  

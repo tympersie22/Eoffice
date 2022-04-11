@@ -1,0 +1,90 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div ng-app="app">
+        <div class="table-responsive" ng-controller="LeaveController as ctrl">
+            <h3>{{ctrl.fullName}}</h3>
+            <p>Create and view leave applications</p>
+            <p>
+                <div ng-if="ctrl.newItemIsError" class="alert alert-danger" role="alert">Provided start date must be
+                    before the end date. A reason for leave must be provided.</div>
+            </p>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Start date*</th>
+                        <th>End Date*</th>
+                        <th>Reason*</th>
+                        <th>Comments</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="active" ng-class="{'danger' : ctrl.newItemIsError}">
+                        <td>
+                            <div class="input-group"> <input type="text" class="form-control" placeholder="MM/DD/YYYY"
+                                    uib-datepicker-popup="{{ctrl.dateFormat}}" ng-model="ctrl.newLeaveItem.startDate"
+                                    is-open="ctrl.startDateOpened" datepicker-options="ctrl.dateOptionsStart"
+                                    ng-required="true" close-text="Close" ng-change="ctrl.dateChanged()"
+                                    datepicker-append-to-body="true" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.openStartDate()"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                </span></div>
+                        </td>
+                        <td>
+                            <div class="input-group"> <input type="text" class="form-control" placeholder="MM/DD/YYYY"
+                                    uib-datepicker-popup="{{ctrl.dateFormat}}" ng-model="ctrl.newLeaveItem.endDate"
+                                    is-open="ctrl.endDateOpened" datepicker-options="ctrl.dateOptionsEnd"
+                                    ng-required="true" close-text="Close" ng-change="ctrl.dateChanged()"
+                                    datepicker-append-to-body="true" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.openEndDate()"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                </span></div>
+                        </td>
+                        <td>
+                            <ui-select ng-model="ctrl.newLeaveItem.reason" theme="bootstrap" append-to-body="true">
+                                <ui-select-match placeholder="Select a reason">
+                                    {{ctrl.reasons[ctrl.newLeaveItem.reason].desc}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in ctrl.reasons | filter: $select.search">
+                                    <div>{{item.desc}}</div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </td>
+                        <td><input ng-model="ctrl.newLeaveItem.comment" type="text" class="form-control"
+                                placeholder="Add comments here"></td>
+                        <td><button type="button" class="btn btn-default" ng-click="ctrl.addLeaveApplication()"><i
+                                    class="glyphicon glyphicon-share-alt"></i>&nbsp;Submit</button></td>
+                    </tr>
+                    <tr ng-repeat="item in ctrl.leaveItems">
+                        <td>{{ctrl.formatDate(item.startDate)}}</td>
+                        <td>{{ctrl.formatDate(item.endDate)}}</td>
+                        <td>{{ctrl.reasons[item.reason].desc}}</td>
+                        <td>{{item.comment}}</td>
+                        <td>{{ctrl.statuses[item.status]}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+</body>
+
+</html>
